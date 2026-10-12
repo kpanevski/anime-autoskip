@@ -2,7 +2,8 @@ CRUNCHYROLL AUTO-SKIP
 =====================
 
 Automatically clicks Crunchyroll's "Skip Intro", "Skip Credits" and
-"Skip Recap" buttons. You choose which of the three to skip.
+"Skip Recap" buttons. You choose which of the three to skip. When an
+episode has no skip button, it uses community timings from AniSkip.
 
 
 INSTALL (Chrome, Edge, Brave or any Chromium browser)
@@ -37,7 +38,28 @@ Click the extension icon in the toolbar:
   Skip credits   skip endings
   Skip recap     skip "previously on" recaps
 
+  Use AniSkip timings when there's no skip button
+                 fallback for episodes where Crunchyroll shows no
+                 button (see below)
+
 Changes apply immediately, no page reload needed.
+
+
+NO SKIP BUTTON? (ANISKIP FALLBACK)
+----------------------------------
+
+If Crunchyroll shows no skip button but the intro is playing, the
+extension looks up community timings on AniSkip (aniskip.com) and
+jumps past the segment itself.
+
+- The episode is matched by series/season title through AniList.
+  Only exact title matches are used, so it never skips on a guess.
+  Episodes it can't match, or that nobody has submitted timings for,
+  simply aren't skipped.
+- It waits one second into the segment first, so Crunchyroll's own
+  button always goes first when there is one.
+- Data sent: the show title (to AniList), and the MyAnimeList ID,
+  episode number and episode length (to AniSkip). Nothing else.
 
 
 CHECK THAT IT WORKS
@@ -48,6 +70,8 @@ the video should jump past it on its own. To see what fired, press
 F12, open the Console tab and look for lines like:
 
   [CR AutoSkip] skipped intro
+  [CR AutoSkip] skipped intro (AniSkip)       <- fallback skip
+  [CR AutoSkip] AniSkip: MAL 51009 ep 1 ...   <- fallback lookup
 
 
 UPDATING
@@ -67,8 +91,6 @@ Go to chrome://extensions and click "Remove" on the extension's card.
 NOTES
 -----
 
-- It only clicks buttons Crunchyroll actually shows. If an episode has
-  no skip button for a segment, nothing happens.
 - "Skip credits" jumps past the credits like the real button does.
   Whether the next episode starts is up to Crunchyroll's own Autoplay
   setting.
