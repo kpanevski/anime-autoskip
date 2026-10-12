@@ -1,6 +1,6 @@
 # Crunchyroll Auto-Skip
 
-A tiny Chrome extension that clicks Crunchyroll's own **Skip Intro**, **Skip Credits** and **Skip Recap** buttons the moment they appear, and uses AniSkip timings when an episode has no button. The toolbar popup lets you choose which ones to auto-skip, and there's a master on/off switch. Settings sync through your Chrome profile.
+A tiny Chrome extension that clicks Crunchyroll's own **Skip Intro**, **Skip Credits** and **Skip Recap** buttons the moment they appear, and uses AniSkip timings when an episode has no button. It can also start the next episode automatically. The toolbar popup lets you choose which ones to auto-skip and whether to autoplay, and there's a master on/off switch. Settings sync through your Chrome profile.
 
 ## Install
 
@@ -19,6 +19,7 @@ When Crunchyroll shows no skip button, the extension uses community timings from
 
 ## Notes
 
-- "Skip Credits" jumps past the credits like the real button does. Whether the next episode starts depends on Crunchyroll's own Autoplay setting.
+- "Skip Credits" jumps past the credits like the real button does.
+- **Autoplay next episode** starts the next episode as soon as the current one ends, after any post-credits scene. It follows the "Next Episode" link under the player and does nothing when there isn't one.
 - Buttons are recognised by their `data-testid` and label. English is the main target, and common German, French, Spanish, Portuguese, Italian and Russian labels are covered too.
 - Each skip is logged to the page console as `[CR AutoSkip] skipped <type>`, with `(AniSkip)` added for fallback skips. The AniSkip lookup is logged too, as `[CR AutoSkip] AniSkip: MAL <id> ep <n>` or `no match`.

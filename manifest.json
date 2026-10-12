@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Crunchyroll Auto-Skip",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Automatically skips Crunchyroll intros, credits and recaps, with AniSkip timings when there's no skip button.",
   "permissions": ["storage"],
   "host_permissions": ["https://graphql.anilist.co/*", "https://api.aniskip.com/*"],

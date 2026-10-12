@@ -31,8 +31,10 @@
         border-bottom: 1px solid rgb(128 128 128 / 0.3);
         font-weight: 600;
       }
-      .extra {
+      .wrap {
         align-items: flex-start;
+      }
+      .extra {
         margin-top: 4px;
         padding-top: 8px;
         border-top: 1px solid rgb(128 128 128 / 0.3);
@@ -48,7 +50,8 @@
     <label><input type="checkbox" id="intro" /><span>Skip intro</span></label>
     <label><input type="checkbox" id="credits" /><span>Skip credits</span></label>
     <label><input type="checkbox" id="recap" /><span>Skip recap</span></label>
-    <label class="extra">
+    <label class="extra"><input type="checkbox" id="autoplay" /><span>Autoplay next episode</span></label>
+    <label class="wrap">
       <input type="checkbox" id="aniskip" /><span>Use AniSkip timings when there's no skip button</span>
     </label>
     <script src="popup.js"></script>

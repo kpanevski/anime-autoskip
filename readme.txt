@@ -4,6 +4,7 @@ CRUNCHYROLL AUTO-SKIP
 Automatically clicks Crunchyroll's "Skip Intro", "Skip Credits" and
 "Skip Recap" buttons. You choose which of the three to skip. When an
 episode has no skip button, it uses community timings from AniSkip.
+It can also start the next episode automatically when one ends.
 
 
 INSTALL (Chrome, Edge, Brave or any Chromium browser)
@@ -37,6 +38,9 @@ Click the extension icon in the toolbar:
   Skip intro     skip openings
   Skip credits   skip endings
   Skip recap     skip "previously on" recaps
+
+  Autoplay next episode
+                 when an episode ends, start the next one
 
   Use AniSkip timings when there's no skip button
                  fallback for episodes where Crunchyroll shows no
@@ -92,8 +96,11 @@ NOTES
 -----
 
 - "Skip credits" jumps past the credits like the real button does.
-  Whether the next episode starts is up to Crunchyroll's own Autoplay
-  setting.
+  With "Autoplay next episode" on, the next episode then starts as
+  soon as the current one ends (after any post-credits scene). It uses
+  the "Next Episode" link under the player, so after a season's last
+  episode it continues wherever that link points, and it stops when
+  there is no next episode.
 - Chrome may show a "Disable developer mode extensions" warning at
   startup. That's normal for unpacked extensions; click the X to keep
   it running.

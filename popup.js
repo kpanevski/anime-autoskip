@@ -1,4 +1,4 @@
-const DEFAULTS = { enabled: true, intro: true, credits: true, recap: true, aniskip: true };
+const DEFAULTS = { enabled: true, intro: true, credits: true, recap: true, autoplay: true, aniskip: true };
 
 const boxes = Object.keys(DEFAULTS).map((key) => document.getElementById(key));
 const master = document.getElementById("enabled");

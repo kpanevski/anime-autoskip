@@ -1,8 +1,9 @@
 // Clicks the player's own Skip Intro / Skip Credits / Skip Recap buttons
 // for whichever types are enabled in the popup. When Crunchyroll has no
-// button, falls back to community skip times from AniSkip.
+// button, falls back to community skip times from AniSkip. Optionally
+// moves on to the next episode when one ends.
 (() => {
-  const DEFAULTS = { enabled: true, intro: true, credits: true, recap: true, aniskip: true };
+  const DEFAULTS = { enabled: true, intro: true, credits: true, recap: true, autoplay: true, aniskip: true };
 
   const SKIP = /skip|überspringen|passer|saltar|salta|omitir|pular|пропуст/;
   // Checked in order: recap before credits before intro, so e.g.
@@ -134,6 +135,32 @@
     }
   }
 
+  // --- Autoplay next episode ---
+
+  const NEXT = [
+    '[data-t="next-episode"] a[href*="/watch/"]', // "Next Episode" card under the player
+    '[data-testid="next-episode-button"]',
+    '[data-testid="vilos-next_button"]',
+    '[data-testid="vilos-nextepisode_button"]',
+  ];
+  let autoplayedAt = 0;
+
+  // Some players pause on the last frame instead of firing "ended".
+  function onEnd(event) {
+    const video = event.target;
+    if (!(video instanceof HTMLVideoElement) || !settings.enabled || !settings.autoplay) return;
+    if (event.type === "pause" && video.currentTime < video.duration - 1) return;
+    // Full episodes on a watch page only, never ads or trailers.
+    if (!location.pathname.includes("/watch/") || !(video.duration > 300)) return;
+    // "ended" and "pause" usually both fire; act on the first one only.
+    if (Date.now() - autoplayedAt < 5000) return;
+    const next = NEXT.map((selector) => document.querySelector(selector)).find(Boolean);
+    if (!next) return;
+    autoplayedAt = Date.now();
+    next.click();
+    console.info("[CR AutoSkip] playing next episode");
+  }
+
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== "sync") return;
     for (const [key, { newValue }] of Object.entries(changes)) settings[key] = newValue;
@@ -150,7 +177,9 @@
     });
     setInterval(scan, 1000);
     scan();
-    // timeupdate doesn't bubble, but a capturing listener still sees it.
+    // Media events don't bubble, but capturing listeners still see them.
     document.addEventListener("timeupdate", onTimeUpdate, true);
+    document.addEventListener("ended", onEnd, true);
+    document.addEventListener("pause", onEnd, true);
   });
 })();
