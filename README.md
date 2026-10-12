@@ -25,9 +25,9 @@ When Crunchyroll shows no skip button, the extension uses community timings from
 ## Notes
 
 - "Skip Credits" jumps past the credits like the real button does.
-- **Autoplay next episode** starts the next episode as soon as the current one ends, after any post-credits scene. It follows the "Next Episode" link under the player and does nothing when there isn't one.
+- **Autoplay next episode** starts the next episode as soon as the current one ends, after any post-credits scene. Playback stopping or pausing in the last 10 seconds also counts as the end, because the player can stop short of the video's length without firing `ended`. It follows the "Next Episode" link under the player, or the player's own next button. If neither exists, it tries the Shift+N shortcut once.
 - Buttons are recognised by their `data-testid` and label. English is the main target, and common German, French, Spanish, Portuguese, Italian and Russian labels are covered too.
-- Each skip is logged to the page console as `[Anime Auto-Skip] skipped <type>`, with `(AniSkip)` added for fallback skips. The AniSkip lookup is logged too, as `[Anime Auto-Skip] AniSkip: MAL <id> ep <n>` or `no match`.
+- Each skip is logged to the page console as `[Anime Auto-Skip] skipped <type>`, with `(AniSkip)` added for fallback skips. The AniSkip lookup is logged too, as `[Anime Auto-Skip] AniSkip: MAL <id> ep <n>` or `no match`, and so is autoplay (`episode finished, opening next: …`). On load it logs `[Anime Auto-Skip] v<version> active` with your settings, which is a quick way to check the right version is running.
 
 ## License
 

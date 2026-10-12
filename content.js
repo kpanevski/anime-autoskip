@@ -142,23 +142,35 @@
     '[data-testid="next-episode-button"]',
     '[data-testid="vilos-next_button"]',
     '[data-testid="vilos-nextepisode_button"]',
+    '[aria-label*="next episode" i]',
   ];
-  let autoplayedAt = 0;
+  let finished = false; // this episode was already handed off
+  let lastTime = -1;
 
-  // Some players pause on the last frame instead of firing "ended".
-  function onEnd(event) {
-    const video = event.target;
-    if (!(video instanceof HTMLVideoElement) || !settings.enabled || !settings.autoplay) return;
-    if (event.type === "pause" && video.currentTime < video.duration - 1) return;
-    // Full episodes on a watch page only, never ads or trailers.
-    if (!location.pathname.includes("/watch/") || !(video.duration > 300)) return;
-    // "ended" and "pause" usually both fire; act on the first one only.
-    if (Date.now() - autoplayedAt < 5000) return;
+  // Polled instead of relying on "ended": the player can stop a little short
+  // of `duration` without firing it, so stopping near the end counts too.
+  function checkEnd() {
+    if (!settings.enabled || !settings.autoplay || !location.pathname.includes("/watch/")) return;
+    // The episode is the long video; ads and trailers are short.
+    const video = [...document.querySelectorAll("video")].find((v) => v.duration > 300);
+    if (!video) return;
+    const remaining = video.duration - video.currentTime;
+    const stopped = video.paused || video.currentTime === lastTime;
+    lastTime = video.currentTime;
+    if (remaining > 30) finished = false; // new episode, or rewatching
+    if (finished || !(video.ended || (remaining < 10 && stopped))) return;
+
+    finished = true;
     const next = NEXT.map((selector) => document.querySelector(selector)).find(Boolean);
-    if (!next) return;
-    autoplayedAt = Date.now();
-    next.click();
-    console.info("[Anime Auto-Skip] playing next episode");
+    if (next) {
+      console.info("[Anime Auto-Skip] episode finished, opening next:", next.getAttribute("href") || next);
+      next.click();
+    } else {
+      // Last resort: the player's own "next episode" shortcut.
+      console.info("[Anime Auto-Skip] episode finished, no next-episode link found; trying Shift+N");
+      const key = { key: "N", code: "KeyN", keyCode: 78, shiftKey: true, bubbles: true };
+      document.dispatchEvent(new KeyboardEvent("keydown", key));
+    }
   }
 
   chrome.storage.onChanged.addListener((changes, area) => {
@@ -175,11 +187,12 @@
       attributes: true,
       attributeFilter: ["aria-hidden", "aria-label", "class", "style", "hidden"],
     });
-    setInterval(scan, 1000);
+    setInterval(() => (scan(), checkEnd()), 1000);
     scan();
-    // Media events don't bubble, but capturing listeners still see them.
+    // timeupdate doesn't bubble, but a capturing listener still sees it.
     document.addEventListener("timeupdate", onTimeUpdate, true);
-    document.addEventListener("ended", onEnd, true);
-    document.addEventListener("pause", onEnd, true);
+    if (window === window.top) {
+      console.info(`[Anime Auto-Skip] v${chrome.runtime.getManifest().version} active`, settings);
+    }
   });
 })();

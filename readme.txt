@@ -82,9 +82,11 @@ Play an episode with an intro. When the "Skip Intro" button appears,
 the video should jump past it on its own. To see what fired, press
 F12, open the Console tab and look for lines like:
 
+  [Anime Auto-Skip] v1.2.2 active {...}           <- loaded, your settings
   [Anime Auto-Skip] skipped intro
   [Anime Auto-Skip] skipped intro (AniSkip)       <- fallback skip
   [Anime Auto-Skip] AniSkip: MAL 51009 ep 1 ...   <- fallback lookup
+  [Anime Auto-Skip] episode finished, opening next: /watch/...
 
 
 UPDATING
@@ -107,10 +109,11 @@ NOTES
 
 - "Skip credits" jumps past the credits like the real button does.
   With "Autoplay next episode" on, the next episode then starts as
-  soon as the current one ends (after any post-credits scene). It uses
-  the "Next Episode" link under the player, so after a season's last
-  episode it continues wherever that link points, and it stops when
-  there is no next episode.
+  soon as the current one ends (after any post-credits scene). Playback
+  stopping or pausing in the last 10 seconds also counts as the end.
+  It uses the "Next Episode" link under the player, so after a
+  season's last episode it continues wherever that link points. If
+  there is no link, it tries the player's Shift+N shortcut once.
 - Chrome may show a "Disable developer mode extensions" warning at
   startup. That's normal for unpacked extensions; click the X to keep
   it running.
