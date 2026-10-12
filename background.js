@@ -70,7 +70,7 @@ async function skipTimes(ep) {
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (msg?.type !== "skip-times") return;
   skipTimes(msg.episode).then(sendResponse, (err) => {
-    console.warn("[CR AutoSkip]", err);
+    console.warn("[Anime Auto-Skip]", err);
     sendResponse({ target: null, segments: [] });
   });
   return true;

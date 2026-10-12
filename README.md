@@ -1,10 +1,12 @@
-# Crunchyroll Auto-Skip
+# Anime Auto-Skip
 
-A tiny Chrome extension that clicks Crunchyroll's own **Skip Intro**, **Skip Credits** and **Skip Recap** buttons the moment they appear, and uses AniSkip timings when an episode has no button. It can also start the next episode automatically. The toolbar popup lets you choose which ones to auto-skip and whether to autoplay, and there's a master on/off switch. Settings sync through your Chrome profile.
+A tiny Chrome extension for Crunchyroll. It clicks the player's own **Skip Intro**, **Skip Credits** and **Skip Recap** buttons the moment they appear, and uses AniSkip timings when an episode has no button. It can also start the next episode automatically. The toolbar popup lets you choose which ones to auto-skip and whether to autoplay, and there's a master on/off switch. Settings sync through your Chrome profile.
+
+> Unofficial. This project is not affiliated with, endorsed by or sponsored by Crunchyroll. "Crunchyroll" is a trademark of its owner and is used here only to say which site the extension works on.
 
 ## Install
 
-1. Download `crunchyroll-autoskip-vX.Y.Z.zip` from the [latest release](https://github.com/kpanevski/crunchyroll-autoskip/releases/latest) and extract it somewhere permanent.
+1. Download `anime-autoskip-vX.Y.Z.zip` from the [latest release](https://github.com/kpanevski/anime-autoskip/releases/latest) and extract it somewhere permanent.
 2. Open `chrome://extensions` and turn on **Developer mode**.
 3. Click **Load unpacked** and select the extracted folder (the one with `manifest.json`).
 4. Pin the extension and use its popup to pick what to skip.
@@ -25,7 +27,11 @@ When Crunchyroll shows no skip button, the extension uses community timings from
 - "Skip Credits" jumps past the credits like the real button does.
 - **Autoplay next episode** starts the next episode as soon as the current one ends, after any post-credits scene. It follows the "Next Episode" link under the player and does nothing when there isn't one.
 - Buttons are recognised by their `data-testid` and label. English is the main target, and common German, French, Spanish, Portuguese, Italian and Russian labels are covered too.
-- Each skip is logged to the page console as `[CR AutoSkip] skipped <type>`, with `(AniSkip)` added for fallback skips. The AniSkip lookup is logged too, as `[CR AutoSkip] AniSkip: MAL <id> ep <n>` or `no match`.
+- Each skip is logged to the page console as `[Anime Auto-Skip] skipped <type>`, with `(AniSkip)` added for fallback skips. The AniSkip lookup is logged too, as `[Anime Auto-Skip] AniSkip: MAL <id> ep <n>` or `no match`.
+
+## License
+
+[MIT](LICENSE)
 
 ## Releasing
 

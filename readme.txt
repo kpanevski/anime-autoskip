@@ -1,19 +1,26 @@
-CRUNCHYROLL AUTO-SKIP
-=====================
+ANIME AUTO-SKIP
+===============
 
-Automatically clicks Crunchyroll's "Skip Intro", "Skip Credits" and
-"Skip Recap" buttons. You choose which of the three to skip. When an
-episode has no skip button, it uses community timings from AniSkip.
-It can also start the next episode automatically when one ends.
+A browser extension for Crunchyroll. It automatically clicks the
+player's "Skip Intro", "Skip Credits" and "Skip Recap" buttons, and
+you choose which of the three to skip. When an episode has no skip
+button, it uses community timings from AniSkip. It can also start the
+next episode automatically when one ends.
+
+Unofficial: not affiliated with, endorsed by or sponsored by
+Crunchyroll. "Crunchyroll" is a trademark of its owner and is used
+here only to say which site the extension works on.
+
+Free and open source under the MIT license (see LICENSE).
 
 
 INSTALL (Chrome, Edge, Brave or any Chromium browser)
 -----------------------------------------------------
 
-1. Download the latest crunchyroll-autoskip-vX.Y.Z.zip from
-   https://github.com/kpanevski/crunchyroll-autoskip/releases/latest
+1. Download the latest anime-autoskip-vX.Y.Z.zip from
+   https://github.com/kpanevski/anime-autoskip/releases/latest
    and extract it somewhere permanent, for example
-   C:\Users\<you>\Documents\crunchyroll-autoskip
+   C:\Users\<you>\Documents\anime-autoskip
    (Chrome loads the extension from this folder, so don't delete or
    move it afterwards.)
 
@@ -25,7 +32,7 @@ INSTALL (Chrome, Edge, Brave or any Chromium browser)
 4. Click "Load unpacked" and select this folder (the one that
    contains manifest.json).
 
-5. "Crunchyroll Auto-Skip" now appears in the list. Click the puzzle
+5. "Anime Auto-Skip" now appears in the list. Click the puzzle
    icon in the toolbar and pin it so the settings are one click away.
 
 6. If you already had a Crunchyroll tab open, reload it.
@@ -75,9 +82,9 @@ Play an episode with an intro. When the "Skip Intro" button appears,
 the video should jump past it on its own. To see what fired, press
 F12, open the Console tab and look for lines like:
 
-  [CR AutoSkip] skipped intro
-  [CR AutoSkip] skipped intro (AniSkip)       <- fallback skip
-  [CR AutoSkip] AniSkip: MAL 51009 ep 1 ...   <- fallback lookup
+  [Anime Auto-Skip] skipped intro
+  [Anime Auto-Skip] skipped intro (AniSkip)       <- fallback skip
+  [Anime Auto-Skip] AniSkip: MAL 51009 ep 1 ...   <- fallback lookup
 
 
 UPDATING

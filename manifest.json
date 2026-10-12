@@ -1,15 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "Crunchyroll Auto-Skip",
-  "version": "1.2.0",
-  "description": "Automatically skips Crunchyroll intros, credits and recaps, with AniSkip timings when there's no skip button.",
+  "name": "Anime Auto-Skip",
+  "version": "1.2.1",
+  "description": "Skips intros, credits and recaps on Crunchyroll and plays the next episode. Unofficial, not affiliated with Crunchyroll.",
   "permissions": ["storage"],
   "host_permissions": ["https://graphql.anilist.co/*", "https://api.aniskip.com/*"],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "Crunchyroll Auto-Skip",
+    "default_title": "Anime Auto-Skip",
     "default_popup": "popup.html"
   },
   "content_scripts": [

@@ -55,7 +55,7 @@
       if (!type || !settings[type] || clicked.get(el) === type) continue;
       clicked.set(el, type);
       el.click();
-      console.info("[CR AutoSkip] skipped", type);
+      console.info("[Anime Auto-Skip] skipped", type);
     }
   }
 
@@ -106,7 +106,7 @@
         if (chrome.runtime.lastError || !res || fallback.path !== path) return;
         fallback.segments = res.segments;
         const match = res.target ? `MAL ${res.target.malId} ep ${res.target.episode}` : "no match";
-        console.info("[CR AutoSkip] AniSkip:", match, res.segments);
+        console.info("[Anime Auto-Skip] AniSkip:", match, res.segments);
       });
     } catch {
       // Extension was reloaded; this orphaned script can't reach it anymore.
@@ -131,7 +131,7 @@
       fallback.done.add(seg);
       if ([...candidates()].some((el) => isShown(el) && classify(el))) continue;
       video.currentTime = seg.end;
-      console.info("[CR AutoSkip] skipped", seg.type, "(AniSkip)");
+      console.info("[Anime Auto-Skip] skipped", seg.type, "(AniSkip)");
     }
   }
 
@@ -158,7 +158,7 @@
     if (!next) return;
     autoplayedAt = Date.now();
     next.click();
-    console.info("[CR AutoSkip] playing next episode");
+    console.info("[Anime Auto-Skip] playing next episode");
   }
 
   chrome.storage.onChanged.addListener((changes, area) => {
