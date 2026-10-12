@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Crunchyroll Auto-Skip",
+  "version": "1.0.0",
+  "description": "Automatically clicks Crunchyroll's Skip Intro, Skip Credits and Skip Recap buttons.",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "Crunchyroll Auto-Skip",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.crunchyroll.com/*", "https://static.crunchyroll.com/*"],
+      "js": ["content.js"],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ]
+}

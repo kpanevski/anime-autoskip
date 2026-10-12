@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Crunchyroll Auto-Skip</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        accent-color: #f47521;
+      }
+      body {
+        width: 220px;
+        margin: 0;
+        padding: 12px 14px;
+        font: 13px/1.4 system-ui, sans-serif;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 14px;
+      }
+      label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 0;
+        cursor: pointer;
+      }
+      .master {
+        margin-bottom: 4px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgb(128 128 128 / 0.3);
+        font-weight: 600;
+      }
+      input:disabled + span {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Crunchyroll Auto-Skip</h1>
+    <label class="master"><input type="checkbox" id="enabled" /><span>Enabled</span></label>
+    <label><input type="checkbox" id="intro" /><span>Skip intro</span></label>
+    <label><input type="checkbox" id="credits" /><span>Skip credits</span></label>
+    <label><input type="checkbox" id="recap" /><span>Skip recap</span></label>
+    <script src="popup.js"></script>
+  </body>
+</html>
