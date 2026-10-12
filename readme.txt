@@ -10,7 +10,9 @@ It can also start the next episode automatically when one ends.
 INSTALL (Chrome, Edge, Brave or any Chromium browser)
 -----------------------------------------------------
 
-1. Put this folder somewhere permanent, for example
+1. Download the latest crunchyroll-autoskip-vX.Y.Z.zip from
+   https://github.com/kpanevski/crunchyroll-autoskip/releases/latest
+   and extract it somewhere permanent, for example
    C:\Users\<you>\Documents\crunchyroll-autoskip
    (Chrome loads the extension from this folder, so don't delete or
    move it afterwards.)
@@ -81,9 +83,10 @@ F12, open the Console tab and look for lines like:
 UPDATING
 --------
 
-After changing or replacing the files in this folder, go to
-chrome://extensions and click the reload icon on the extension's card,
-then reload your Crunchyroll tab.
+Download the newer zip from the releases page and extract it over the
+same folder, replacing the old files. Then go to chrome://extensions,
+click the reload icon on the extension's card and reload your
+Crunchyroll tab. Your settings are kept.
 
 
 UNINSTALL

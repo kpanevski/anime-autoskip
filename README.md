@@ -4,9 +4,12 @@ A tiny Chrome extension that clicks Crunchyroll's own **Skip Intro**, **Skip Cre
 
 ## Install
 
-1. Open `chrome://extensions` and turn on **Developer mode**.
-2. Click **Load unpacked** and select this folder.
-3. Pin the extension and use its popup to pick what to skip.
+1. Download `crunchyroll-autoskip-vX.Y.Z.zip` from the [latest release](https://github.com/kpanevski/crunchyroll-autoskip/releases/latest) and extract it somewhere permanent.
+2. Open `chrome://extensions` and turn on **Developer mode**.
+3. Click **Load unpacked** and select the extracted folder (the one with `manifest.json`).
+4. Pin the extension and use its popup to pick what to skip.
+
+`readme.txt` inside the zip has the same steps in more detail, plus how to update and uninstall.
 
 ## No skip button? AniSkip fallback
 
@@ -23,3 +26,14 @@ When Crunchyroll shows no skip button, the extension uses community timings from
 - **Autoplay next episode** starts the next episode as soon as the current one ends, after any post-credits scene. It follows the "Next Episode" link under the player and does nothing when there isn't one.
 - Buttons are recognised by their `data-testid` and label. English is the main target, and common German, French, Spanish, Portuguese, Italian and Russian labels are covered too.
 - Each skip is logged to the page console as `[CR AutoSkip] skipped <type>`, with `(AniSkip)` added for fallback skips. The AniSkip lookup is logged too, as `[CR AutoSkip] AniSkip: MAL <id> ep <n>` or `no match`.
+
+## Releasing
+
+1. Bump `version` in `manifest.json` and commit.
+2. Tag the commit with the same version and push the tag:
+
+   ```bash
+   git tag v1.3.0 && git push origin main v1.3.0
+   ```
+
+The [release workflow](.github/workflows/release.yml) checks that the tag matches `manifest.json`, zips the extension with `git archive` (files marked `export-ignore` in `.gitattributes` stay out), and publishes a GitHub release with the zip attached.

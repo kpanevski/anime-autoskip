@@ -1,0 +1,4 @@
+# Kept out of the release zip (built with `git archive`).
+README.md export-ignore
+.gitattributes export-ignore
+.github export-ignore
